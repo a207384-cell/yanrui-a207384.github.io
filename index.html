@@ -1,0 +1,753 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YAN RUI | SDG 3 e-Portfolio</title>
+  <style>
+    :root {
+      --navy: #0b2f44;
+      --blue: #1378b8;
+      --teal: #0e9f8f;
+      --green: #35b86f;
+      --mint: #e8f8f3;
+      --ice: #f2fbff;
+      --white: #ffffff;
+      --text: #173243;
+      --muted: #5d7380;
+      --line: rgba(19, 120, 184, 0.18);
+      --shadow: 0 18px 48px rgba(11, 47, 68, 0.14);
+      --radius: 18px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, var(--ice) 0%, #ffffff 36%, var(--mint) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(14, 159, 143, 0.28);
+    }
+    .brand-mark svg {
+      width: 25px;
+      height: 25px;
+      fill: currentColor;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: var(--mint);
+      color: var(--teal);
+    }
+    section {
+      scroll-margin-top: 90px;
+    }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 76px 22px;
+    }
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(115deg, rgba(11, 47, 68, 0.88), rgba(19, 120, 184, 0.74)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'%3E%3Crect width='1600' height='900' fill='%23e8f8f3'/%3E%3Cg opacity='0.55'%3E%3Ccircle cx='1360' cy='150' r='250' fill='%2335b86f'/%3E%3Ccircle cx='250' cy='760' r='320' fill='%231378b8'/%3E%3Cpath d='M850 145c140 0 254 114 254 254S990 653 850 653 596 539 596 399 710 145 850 145Z' fill='%23ffffff'/%3E%3Cpath d='M822 260h58v110h110v58H880v110h-58V428H712v-58h110V260Z' fill='%230e9f8f'/%3E%3Cpath d='M1120 590c78-128 196-158 318-101' fill='none' stroke='%23ffffff' stroke-width='28' stroke-linecap='round'/%3E%3Cpath d='M86 268c116 54 238 37 344-61' fill='none' stroke='%2335b86f' stroke-width='24' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+    .hero .container {
+      padding-top: 64px;
+      padding-bottom: 88px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: 38px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+    .pulse {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 7px rgba(53, 184, 111, 0.22);
+    }
+    h1 {
+      max-width: 760px;
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+    }
+    .hero-text {
+      max-width: 760px;
+      font-size: clamp(1rem, 2.3vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 0;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+    .button.primary {
+      background: var(--white);
+      color: var(--navy);
+    }
+    .button.secondary {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .button.github {
+      background: var(--navy);
+      color: var(--white);
+      width: fit-content;
+      margin-top: 18px;
+    }
+    .button.video {
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: var(--white);
+      width: fit-content;
+      margin-top: 8px;
+    }
+    .button:hover,
+    .button:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(11, 47, 68, 0.16);
+    }
+    .profile-panel {
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(18px);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+    .profile-panel h2 {
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+    .profile-list {
+      display: grid;
+      gap: 14px;
+    }
+    .profile-item {
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .profile-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .profile-label {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .profile-value {
+      font-weight: 800;
+      color: var(--white);
+    }
+    .section-head {
+      display: grid;
+      gap: 10px;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+    .section-kicker {
+      color: var(--teal);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: 0.86rem;
+    }
+    h2 {
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+    }
+    .section-head p,
+    .card p,
+    .reflection-text {
+      color: var(--muted);
+    }
+    .sdg-strip {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-top: -46px;
+      position: relative;
+      z-index: 3;
+    }
+    .sdg-badge,
+    .reason-box {
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      padding: 26px;
+    }
+    .sdg-badge {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--green));
+      color: var(--white);
+    }
+    .sdg-number {
+      flex: 0 0 auto;
+      width: 76px;
+      height: 76px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.2);
+      display: grid;
+      place-items: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+    }
+    .sdg-badge h3 {
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .lab-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.94);
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(11, 47, 68, 0.08);
+      transition: 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .card-body {
+      padding: 22px;
+    }
+    .card h3 {
+      color: var(--navy);
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-bottom: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card .card-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .project-block {
+      margin-top: 14px;
+    }
+    .project-block strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .reflection-panel {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 28px;
+      align-items: center;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(19, 120, 184, 0.12), rgba(53, 184, 111, 0.16)),
+        var(--white);
+      border: 1px solid var(--line);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .reflection-icon {
+      min-height: 250px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      color: var(--white);
+    }
+    .reflection-icon svg {
+      width: min(190px, 62%);
+      height: auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .skills-wrap,
+    .resources-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .skill-chip,
+    .resource-chip {
+      padding: 12px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(11, 47, 68, 0.06);
+    }
+    .resource-chip {
+      background: linear-gradient(180deg, #ffffff, var(--ice));
+    }
+    .acknowledgement {
+      margin-top: 28px;
+      border-left: 5px solid var(--teal);
+      padding: 18px 20px;
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--muted);
+      box-shadow: 0 10px 28px rgba(11, 47, 68, 0.07);
+    }
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 34px 18px;
+    }
+    footer p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 6px;
+    }
+    @media (max-width: 920px) {
+      .hero .container,
+      .sdg-strip,
+      .reflection-panel {
+        grid-template-columns: 1fr;
+      }
+      .lab-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 720px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 16px;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 4px;
+      }
+      .nav-links a {
+        padding: 7px 9px;
+        font-size: 0.86rem;
+      }
+      .container {
+        padding: 58px 16px;
+      }
+      .hero {
+        min-height: auto;
+      }
+      .hero .container {
+        padding-top: 54px;
+        padding-bottom: 70px;
+      }
+      .card-grid,
+      .lab-grid {
+        grid-template-columns: 1fr;
+      }
+      .sdg-strip {
+        margin-top: -28px;
+      }
+      .sdg-badge {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .profile-panel,
+      .sdg-badge,
+      .reason-box,
+      .reflection-panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#home" aria-label="YAN RUI home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M10.9 3h2.2v6.9H20v2.2h-6.9V19h-2.2v-6.9H4V9.9h6.9V3Z" />
+          </svg>
+        </span>
+        <span>YAN RUI</span>
+      </a>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#labs">Labs</a>
+        <a href="#projects">Projects</a>
+        <a href="#reflection">Reflection</a>
+        <a href="#skills">Skills</a>
+        <a href="#resources">Resources</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="container">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> SDG 3: Good Health and Well-being</div>
+        <h1>Mobile Programming e-Portfolio</h1>
+        <p class="hero-text">
+          Hello! I am YAN RUI, an IT student at Universiti Kebangsaan Malaysia passionate about mobile development. This e-Portfolio showcases my journey in creating user-centric Android applications, focusing on health tracking solutions to improve daily lives.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">View Projects</a>
+          <a class="button secondary" href="#labs">Explore Labs</a>
+        </div>
+      </div>
+      <aside class="profile-panel" aria-label="Student information">
+        <h2>Student Information</h2>
+        <div class="profile-list">
+          <div class="profile-item">
+            <span class="profile-label">Name</span>
+            <span class="profile-value">YAN RUI</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Matric No.</span>
+            <span class="profile-value">A207384</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Programme</span>
+            <span class="profile-value">Information Technology (IT)</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-label">Instructor</span>
+            <span class="profile-value">PT-LZWAN</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="sdg-strip">
+        <div class="sdg-badge">
+          <div class="sdg-number">3</div>
+          <div>
+            <h3>Good Health and Well-being</h3>
+            <p>Technology for healthier routines, awareness, and support.</p>
+          </div>
+        </div>
+        <div class="reason-box">
+          <span class="section-kicker">Reason</span>
+          <p>
+            I chose SDG 3 because I strongly believe mobile technology can seamlessly integrate into our daily routines, empowering individuals to proactively monitor, manage, and ultimately improve their personal health track.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section id="labs">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Labs</span>
+          <h2>Practical Android Learning</h2>
+          <p>Each lab introduced a core mobile development concept and built the foundation for the final health tracking projects.</p>
+        </div>
+        <div class="card-grid lab-grid">
+          <article class="card">
+            <div class="card-body">
+              <span class="meta-pill">Lab 1</span>
+              <h3>User Interface</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=DNQQT2cO4cI" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <p>By building the first UI layouts, I grasped the core concepts of Jetpack Compose. Structuring elements with Rows and Columns gave me a solid foundation for robust app design.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="meta-pill">Lab 2</span>
+              <h3>Interaction</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=lbUoyE02QJU" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <p>Adding interactivity brought my static designs to life. I learned how to manage application state effectively and respond to user inputs, which is crucial for building engaging apps.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="meta-pill">Lab 3</span>
+              <h3>Material Design</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=81_oYqBbeyY" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <p>Applying Material Design components significantly enhanced the overall aesthetic and user experience. It taught me the importance of visual consistency across an application.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="meta-pill">Lab 4</span>
+              <h3>Navigation</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=XHo-cK6nBPk" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <p>Implementing Navigation Compose allowed me to transition smoothly between different screens. This helped me understand the logical flow and architecture of multi-screen applications.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="meta-pill">Lab 5</span>
+              <h3>Room Database</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=0AOkBYds_pE" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <p>Learning Room Database was a major turning point. It enabled me to persist data locally, ensuring that user inputs like daily health logs are safely and reliably stored on the device.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Projects</span>
+          <h2>Health Tracker Applications</h2>
+          <p>Two SDG 3 mobile applications that apply Android development skills to health monitoring and wellness awareness.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card project-card">
+            <div class="card-body">
+              <span class="meta-pill">Project 1</span>
+              <h3>Health Track Basic</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=uUA0uSCNU3s" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <div class="project-block">
+                <strong>Problem Statement</strong>
+                <p>People often find it difficult to maintain a consistent record of their daily health metrics without a dedicated, simple, and uncluttered mobile tool.</p>
+              </div>
+              <div class="project-block">
+                <strong>Lessons Learned</strong>
+                <p>I learned to combine UI navigation with basic state management to create a functional prototype. It highlighted the importance of clear user flows and intuitive layouts.</p>
+              </div>
+              <a class="button github" href="https://github.com/a207384-cell/A207384_YanRui_DrDEK_Project1" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+
+          <article class="card project-card">
+            <div class="card-body">
+              <span class="meta-pill">Project 2</span>
+              <h3>Health Track Pro</h3>
+              <div class="project-block">
+                <strong>Video:</strong>
+                <a class="button video" href="https://www.youtube.com/watch?v=Kf96cRIYMLk" target="_blank" rel="noopener">Open YouTube Video</a>
+              </div>
+              <div class="project-block">
+                <strong>Problem Statement</strong>
+                <p>A basic tracker needs long-term reliability. Users require persistent data storage and a robust architecture to securely monitor their health over extended periods.</p>
+              </div>
+              <div class="project-block">
+                <strong>Lessons Learned</strong>
+                <p>Integrating Room database for local persistence elevated the app to a production-ready level. I also significantly improved my debugging techniques and application architecture skills.</p>
+              </div>
+              <a class="button github" href="https://github.com/a207384-cell/A207384_YanRui_DrDEK_project2" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflection">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Reflection</span>
+          <h2>Learning Journey</h2>
+        </div>
+        <div class="reflection-panel">
+          <div class="reflection-icon" aria-hidden="true">
+            <svg viewBox="0 0 220 220">
+              <path d="M35 126c32-4 35-36 64-38 34-2 30 54 68 49 20-3 26-25 31-43" />
+              <path d="M55 167h110" />
+              <path d="M72 58h76" />
+              <path d="M110 25v66" />
+              <path d="M77 58c6-24 22-37 33-37s27 13 33 37" />
+              <path d="M168 54c17 13 27 34 27 57 0 46-38 83-85 83s-85-37-85-83c0-23 10-44 27-57" />
+            </svg>
+          </div>
+          <p class="reflection-text">
+            From the initial UI exercises to a fully functional health tracker, this course has been a steep but highly rewarding learning curve. I developed a strong practical grasp of Kotlin and modern Android tools, especially Jetpack Compose and Room Database. Overcoming the hurdles of navigation and data persistence has built my confidence immensely, preparing me to tackle real-world software engineering projects in the future.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Skills</span>
+          <h2>Technical Skills Developed</h2>
+        </div>
+        <div class="skills-wrap">
+          <span class="skill-chip">Kotlin</span>
+          <span class="skill-chip">Jetpack Compose</span>
+          <span class="skill-chip">Navigation Component</span>
+          <span class="skill-chip">Room Database</span>
+          <span class="skill-chip">Material Design</span>
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker">Resources</span>
+          <h2>Learning Resources</h2>
+        </div>
+        <div class="resources-wrap">
+          <span class="resource-chip">Android Developer Documentation</span>
+          <span class="resource-chip">Material Design Guidelines</span>
+          <span class="resource-chip">Stack Overflow</span>
+          <span class="resource-chip">GitHub Repositories</span>
+        </div>
+        <div class="acknowledgement">
+          <strong>Acknowledgement:</strong> AI assistants including Gemini and ChatGPT were utilized to help troubleshoot debugging errors, understand complex architecture concepts, and optimize code structure.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>YAN RUI</strong>
+    <p>A207384</p>
+    <p>Universiti Kebangsaan Malaysia</p>
+    <p>2026</p>
+  </footer>
+</body>
+</html>
+
+```
